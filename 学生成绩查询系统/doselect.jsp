@@ -24,7 +24,7 @@
             con=DriverManager.getConnection("jdbc:mysql://localhost:3306/cj","root","1234");
             String sql="select * from result where number=?";//动态 SQL 语句
             if(!(subject.equals(""))) sql=sql+" and subject=?";
-            pstm=con.prepareStatement(sql);//生成 pstm 对象
+            pstm=con.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);//生成 pstm 对象
             pstm.setInt(1,Integer.parseInt(number));//为？设置具体值
             if(!(subject.equals(""))) pstm.setString(2,subject);
             rs=pstm.executeQuery();//执行查询
