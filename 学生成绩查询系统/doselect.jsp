@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 19339
-  Date: 2022/5/12
-  Time: 19:52
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=gbk" language="java" import="java.sql.*" %>
 <html style="text-align: center">
 <head>
@@ -17,23 +10,23 @@
     Connection con=null;
     PreparedStatement pstm=null;
     ResultSet rs=null;
-    if(number.equals(""))response.sendRedirect("index.jsp");//Ñ§ºÅÔÚÊäÈë¿òÖÐÎ´ÊäÈë¡£
+    if(number.equals(""))response.sendRedirect("index.jsp");//å­¦å·åœ¨è¾“å…¥æ¡†ä¸­æœªè¾“å…¥ã€‚
     else{
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://localhost:3306/cj","root","1234");
-            String sql="select * from result where number=?";//¶¯Ì¬ SQL Óï¾ä
+            String sql="select * from result where number=?";//åŠ¨æ€ SQL è¯­å¥
             if(!(subject.equals(""))) sql=sql+" and subject=?";
-            pstm=con.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);//Éú³É pstm ¶ÔÏó
-            pstm.setInt(1,Integer.parseInt(number));//Îª£¿ÉèÖÃ¾ßÌåÖµ
+            pstm=con.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);//ç”Ÿæˆ pstm å¯¹è±¡
+            pstm.setInt(1,Integer.parseInt(number));//ä¸ºï¼Ÿè®¾ç½®å…·ä½“å€¼
             if(!(subject.equals(""))) pstm.setString(2,subject);
-            rs=pstm.executeQuery();//Ö´ÐÐ²éÑ¯
-            if(rs.next()!=false){//²éÑ¯µ½Êý¾Ý
+            rs=pstm.executeQuery();//æ‰§è¡ŒæŸ¥è¯¢
+            if(rs.next()!=false){//æŸ¥è¯¢åˆ°æ•°æ®
 %>
-<h1 style="font-family: ËÎÌå">Ñ§Éú³É¼¨µ¥</h1>
-<a href="index.jsp">ÖØÐÂ²éÑ¯</a><br>
+<h1 style="font-family: å®‹ä½“">å­¦ç”Ÿæˆç»©å•</h1>
+<a href="index.jsp">é‡æ–°æŸ¥è¯¢</a><br>
 <table border="0" style="text-align: center;margin: auto">
-    <tr><td>Ñ§ºÅ</td><td>¿ÆÄ¿</td><td>³É¼¨</td>
+    <tr><td>å­¦å·</td><td>ç§‘ç›®</td><td>æˆç»©</td>
     </tr>
     <%
         rs.beforeFirst();
@@ -45,7 +38,7 @@
         }%>
 </table>
 <%}
-else response.sendRedirect("noresult.jsp");//Ã»²éÑ¯µ½Êý¾Ý£¬µ½ noresult Ò³Ãæ
+else response.sendRedirect("noresult.jsp");//æ²¡æŸ¥è¯¢åˆ°æ•°æ®ï¼Œåˆ° noresult é¡µé¢
 }catch(ClassNotFoundException | SQLException e)
 {e.printStackTrace();
 } finally{
@@ -68,23 +61,23 @@ else response.sendRedirect("noresult.jsp");//Ã»²éÑ¯µ½Êý¾Ý£¬µ½ noresult Ò³Ãæ
 <%--    Connection con=null;--%>
 <%--    PreparedStatement pstm=null;--%>
 <%--    ResultSet rs=null;--%>
-<%--    if(number.equals(""))response.sendRedirect("index.jsp");//Ñ§ºÅÔÚÊäÈë¿òÖÐÎ´ÊäÈë¡£--%>
+<%--    if(number.equals(""))response.sendRedirect("index.jsp");//å­¦å·åœ¨è¾“å…¥æ¡†ä¸­æœªè¾“å…¥ã€‚--%>
 <%--    else{--%>
 <%--        try{--%>
 <%--            Class.forName("com.mysql.jdbc.Driver");--%>
 <%--            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/cj","root","123");--%>
-<%--            String sql="select * from result where number=?";//¶¯Ì¬ SQL Óï¾ä--%>
+<%--            String sql="select * from result where number=?";//åŠ¨æ€ SQL è¯­å¥--%>
 <%--            if(!(subject.equals(""))) sql=sql+" and subject=?";--%>
-<%--            pstm=con.prepareStatement(sql);//Éú³É pstm ¶ÔÏó--%>
-<%--            pstm.setInt(1,Integer.parseInt(number));//Îª£¿ÉèÖÃ¾ßÌåÖµ--%>
+<%--            pstm=con.prepareStatement(sql);//ç”Ÿæˆ pstm å¯¹è±¡--%>
+<%--            pstm.setInt(1,Integer.parseInt(number));//ä¸ºï¼Ÿè®¾ç½®å…·ä½“å€¼--%>
 <%--            if(!(subject.equals(""))) pstm.setString(2,subject);--%>
-<%--            rs=pstm.executeQuery();//Ö´ÐÐ²éÑ¯--%>
-<%--            if(rs.next()!=false){//²éÑ¯µ½Êý¾Ý--%>
+<%--            rs=pstm.executeQuery();//æ‰§è¡ŒæŸ¥è¯¢--%>
+<%--            if(rs.next()!=false){//æŸ¥è¯¢åˆ°æ•°æ®--%>
 <%--%>--%>
-<%--<h1>Ñ§Éú³É¼¨µ¥</h1>--%>
-<%--<a href="index.jsp">ÖØÐÂ²éÑ¯</a><br>--%>
+<%--<h1>å­¦ç”Ÿæˆç»©å•</h1>--%>
+<%--<a href="index.jsp">é‡æ–°æŸ¥è¯¢</a><br>--%>
 <%--<table border="0">--%>
-<%--    <tr><td>Ñ§ºÅ</td><td>¿ÆÄ¿</td><td>³É¼¨</td>--%>
+<%--    <tr><td>å­¦å·</td><td>ç§‘ç›®</td><td>æˆç»©</td>--%>
 <%--    </tr>--%>
 <%--    <%--%>
 <%--        while(rs.next()){--%>
@@ -95,7 +88,7 @@ else response.sendRedirect("noresult.jsp");//Ã»²éÑ¯µ½Êý¾Ý£¬µ½ noresult Ò³Ãæ
 <%--        }%>--%>
 <%--</table>--%>
 <%--<%}--%>
-<%--else response.sendRedirect("noresult.jsp");//Ã»²éÑ¯µ½Êý¾Ý£¬µ½ noresult Ò³Ãæ--%>
+<%--else response.sendRedirect("noresult.jsp");//æ²¡æŸ¥è¯¢åˆ°æ•°æ®ï¼Œåˆ° noresult é¡µé¢--%>
 <%--}catch(ClassNotFoundException | SQLException e)--%>
 <%--{e.printStackTrace();--%>
 <%--} finally{--%>
